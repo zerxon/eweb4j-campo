@@ -1,0 +1,70 @@
+#parse("public/header.html")
+	<div class="container">
+		<div class="row">
+			<div class="span9" id="board">
+				<div class="box" id="content">
+				#foreach($item in $artilcePage.getList())
+					<div id="blog_item">
+					<table width="100%">
+						<tr>
+							<td rowspan="2" width="54px;"><a href="${BaseURL}user/profile/${item.user.name}"><img class="pic s48" src="http://gravatar.com/avatar/${item.user.gravatar}.png?r=G&amp;s=48"></a></td>
+							<td><strong><a href="${BaseURL}article/${item.id}">${item.title}</a></strong><span class="badge badge-info right">0</span></td>
+						</tr>
+						<tr>
+							<td><a href="${BaseURL}user/profile/${item.user.name}">${item.user.name}</a> 发布于${item.displayDate} <!--<a href="/profile/{$i.last_replyer}">{$i.last_replyer}</a> 回复于 {$i.r_date}{/if}{if $i.label!=''}{foreach from=$i.label item=label}&nbsp;<span class="label">{$label}</span>{/foreach}{/if}--></td>
+						</tr>
+					</table>
+					</div>
+				#end
+				</div>
+				
+				<div class="box" id="footer">
+					Copyright 2013 | All Rights Reserved
+				</div>
+				
+				#if($artilcePage.totalPageCount>1) 
+				<div class="pagination">
+				  <ul>
+				  	#if($artilcePage.hasPrev())
+				  	<li class="prev"><a href="${BaseURL}article/page/${artilcePage.prev().pageIndex}">&lt;</a></li>
+				  	#else
+				  	<li class="prev disabled"><a href="javascript:void(0);">&lt;</a></li>
+				  	#end
+				  	
+				  	#foreach($i in [1..$artilcePage.totalPageCount])
+					<li #if($i==$artilcePage.pageIndex)class="active"#end><a href="${BaseURL}article/page/${i}">${i}</a></li>				  	
+				  	#end
+				  	
+				  	#if($artilcePage.hasNext())
+				  	<li><a href="${BaseURL}article/page/${artilcePage.next().pageIndex}">&gt;</a></li>
+				  	#else
+				  	<li class="next disabled"><a href="javascript:void(0);">&gt;</a></li>
+				  	#end
+				  </ul>
+				</div>
+				#end
+			</div>
+		
+			<div class="span3" id="sidebar">
+			#if ($SESSION.user)
+				
+				#parse("user/userinfo.html")
+				
+				<div class="box">
+					<a href="${BaseURL}article/post" class="btn btn-success">发起话题</a>
+				</div>
+			#end
+				
+				<div class="box">
+					<header>统计信息</header>
+					<ul>
+						<li>话题数：${artilcePage.getTotalRowCount()}</li>
+						<li>回帖数：${replyCount}</li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+  </div>
+
+#parse("public/footer.html")

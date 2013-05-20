@@ -1,0 +1,63 @@
+#parse("public/header.html")
+	<div class="container">
+		<ul class="breadcrumb">
+		  <li>
+		    <a href="/">博客</a> <span class="divider">/</span>
+		  </li>
+		  <li class="active">#if ($GLOBAL.uri.indexOf("edit")>-1)编辑文章#else发布文章#end</li>
+		</ul>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="span9" id="board">
+				<div class="alert" id="label_error" style="display:none">
+					<a class="close" id="close">×</a>
+					<div id="error_txt"></div>
+				</div>
+				<div class="box">
+				#if ($GLOBAL.uri.indexOf("edit")>-1)
+				<form method="post" action="${BaseURL}article/doEdit">
+				<input type="hidden" name="article.id" value="$!{article.id}">
+				#else
+				<form method="post" action="${BaseURL}article/doPost">
+				#end
+				<table width="100%" cellpadding="3">
+					<tr>
+						<td width="9%">标题：</td>
+						<td><input class="span4" id="title" name="article.title" value="$!{article.title}" type="text" /></td>
+					</tr>
+					<tr>
+						<td>正文：</td>
+						<td>
+							<div id="wmd-button-bar"></div>
+							<textarea class="span8" id="textarea" name="article.content" rows="20">$!{article.content}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input class="btn right" id="submit" name="submit" value="发布" type="submit" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><div id="wmd-preview"></div></td>
+					</tr>
+				</table>
+				<input id="wmd-html" name="wmd-html" type="hidden"></input>
+				</form>
+			  	</div>
+			</div>
+	
+		#if($SESSION.user)
+		<div class="span3" id="sidebar">
+			#parse("user/userinfo.html")
+		</div>
+		#end
+	</div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="/js/wmd/wmd.css"/>
+<script src="/js/wmd/wmd.combined.min.js"></script>
+<script src="/js/wmd/wmd.js"></script>
+#parse("public/footer.html")
+<script type="text/javascript" src="/js/topicAjax.js"></script>

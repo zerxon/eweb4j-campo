@@ -1,0 +1,9 @@
+#parse("public/header.html")
+
+<ul>
+#foreach($item in $users)
+	<li>${item.id}.${item.name}</li>
+#end
+</ul>
+
+#parse("public/footer.html")

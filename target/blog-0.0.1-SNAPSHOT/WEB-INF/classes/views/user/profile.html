@@ -1,0 +1,44 @@
+#parse("public/header.html")
+
+  <div class="container">
+  	<div class="row">
+		<div class="span9">
+			<div class="box">
+				<table width="100%" cellpadding="3">
+					<tr>
+						<td width="15%"></td>
+						<td >&nbsp;</td>
+					</tr>
+					<tr>
+						<td>用户名：</td>
+						<td>${user.name}</td>
+						<td width="15%" rowspan="6" align="right"><img class="pic s145" src="http://gravatar.com/avatar/${user.gravatar}.png?r=G&amp;s=145"></td>
+					</tr>
+				</table>
+			</div>
+			
+		</div>
+	
+		<div class="span3" id="sidebar">
+			<div class="box">
+				<header>个人统计</header>
+				<ul>
+					<li>话题数：${articleCount}</li>
+					<li>回复数：${replyCount}</li>
+				</ul>
+			</div>
+		#if ($SESSION.user && $SESSION.user.id==$user.id)
+			<div class="box">
+				<header>设置</header>
+				<a class="btn" href="${BaseURL}user/setting/password">修改密码</a>
+			</div>
+			<div class="box">
+				<header>收藏夹</header>
+				<a class="btn btn-info" href="${BaseURL}user/favorite">进入我的收藏</a>
+			</div>
+		#end
+		</div>
+	</div>
+  </div>
+  
+#parse("public/footer.html")

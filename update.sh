@@ -1,0 +1,1 @@
+cp -Rf ./src/main/resources/views/* ./target/blog-0.0.1-SNAPSHOT/WEB-INF/classes/views/ 
