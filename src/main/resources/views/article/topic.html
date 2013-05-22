@@ -5,7 +5,7 @@
 <div class="container">
 	<ul class="breadcrumb">
 		<li>
-			<a href="/blog">博客</a><span class="divider">/</span>
+			<a href="${BaseURL}">博客</a><span class="divider">/</span>
 		</li>
 		<li class="active">
 			${article.title}
@@ -21,9 +21,9 @@
 					<div>
 						<span class="title">${article.title}</span>
 					</div>
-					<a href="/profile/${article.user.name}">${article.user.name}</a> 发布于 ${article.displayDate}，
+					<a href="${BaseURL}user/profile/${article.user.name}">${article.user.name}</a> 发布于 ${article.displayDate}，
 					#if ($SESSION.user.id==$article.user.id)
-					<a href="/article/edit/${article.id}">编辑</a>
+					<a href="${BaseURL}article/edit/${article.id}">编辑</a>
 					#end
 					<span class="right">
 						#if ($SESSION.user)
