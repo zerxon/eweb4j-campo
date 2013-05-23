@@ -21,17 +21,19 @@ public class ArticleService {
 		
 		Collection<Article> arts = artilcePage.getList();
 		
-		for(Article art : arts){
-			User u = Db.ar(User.class)
-						.dao()
-						.select("name", "email")
-						.where()
-							.field("id").equal(art.getUser().getId())
-						.queryOne();
-			
-			art.getUser().setEmail(u.getEmail());
-			art.getUser().setName(u.getName());
-			
+		if(arts!=null){
+			for(Article art : arts){
+				User u = Db.ar(User.class)
+							.dao()
+							.select("name", "email")
+							.where()
+								.field("id").equal(art.getUser().getId())
+							.queryOne();
+				
+				art.getUser().setEmail(u.getEmail());
+				art.getUser().setName(u.getName());
+				
+			}
 		}
 		
 		return artilcePage;

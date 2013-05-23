@@ -71,8 +71,7 @@ public class UserController {
 		String msg=null;
 		
 		if(!checkUserName(user.getName()).equals(VERIFIED)){
-			//msg="用户名无效";
-			msg="user name 无效";
+			msg="用户名无效";
 			isVerified=false;
 		}
 		else if(!checkEmail(user.getEmail()).equals(VERIFIED)){
