@@ -25,7 +25,7 @@ public class User {
 	@Id
 	private Long id;
 	private String name;
-	@Email(mess="邮箱格式不正确")
+	
 	@Required
 	private String email;
 	private String password;

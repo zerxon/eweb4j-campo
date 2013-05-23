@@ -66,20 +66,20 @@ public class UserController {
 	
 	@Path("/doSignup")
 	@POST
-	@Validate({"user.email"})
 	public String doSignup(@QueryParam("user")User user, Map<String,Object> model){
 		boolean isVerified=true;
 		String msg=null;
 		
-		if(!checkUserName(user.getName()).equals("1")){
-			msg="用户名无效";
+		if(!checkUserName(user.getName()).equals(VERIFIED)){
+			//msg="用户名无效";
+			msg="user name 无效";
 			isVerified=false;
 		}
-		else if(!checkEmail(user.getEmail()).equals("1")){
+		else if(!checkEmail(user.getEmail()).equals(VERIFIED)){
 			msg="邮箱无效";
 			isVerified=false;
 		}
-		else if(!checkPassword(user.getPassword()).equals("1")){
+		else if(!checkPassword(user.getPassword()).equals(VERIFIED)){
 			msg="密码无效";
 			isVerified=false;
 		}
