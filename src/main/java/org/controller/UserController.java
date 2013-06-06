@@ -13,7 +13,6 @@ import javax.ws.rs.QueryParam;
 import org.entity.Article;
 import org.entity.User;
 import org.eweb4j.mvc.MVC;
-import org.eweb4j.mvc.validator.annotation.Validate;
 import org.eweb4j.util.CommonUtil;
 import org.ioc.ServiceIOCs;
 import org.service.ArticleService;
